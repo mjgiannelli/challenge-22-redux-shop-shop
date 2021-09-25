@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import {
     UPDATE_PRODUCTS,
     UPDATE_CATEGORIES,
@@ -84,3 +86,5 @@ export const reducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export const rootReducer = combineReducers({ reducer });
