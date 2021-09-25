@@ -22,3 +22,5 @@ const useStoreContext = () => {
 }
 
 export { StoreProvider, useStoreContext };
+
+// redux global state
