@@ -14,7 +14,7 @@ function ProductItem(item) {
     quantity
   } = item;
 
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.reducer);
   const dispatch = useDispatch((dispatch) => dispatch);
 
   const { cart } = state;

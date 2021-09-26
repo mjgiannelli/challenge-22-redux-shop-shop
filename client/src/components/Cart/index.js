@@ -8,14 +8,12 @@ import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
 import { useSelector, useDispatch } from 'react-redux'
-import store from '../../utils/GlobalState';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
 
     const state = useSelector((state) => state.reducer);
-    console.log('cart state ', state);
     const dispatch = useDispatch((dispatch) => dispatch);
 
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
