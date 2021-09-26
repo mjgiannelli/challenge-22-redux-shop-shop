@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
+import { useSelector, useDispatch } from 'react-redux'
 import { QUERY_PRODUCTS } from '../utils/queries';
 import spinner from '../assets/spinner.gif';
-import { useStoreContext } from '../utils/GlobalState';
 import Cart from '../components/Cart';
 import {
   REMOVE_FROM_CART,
@@ -15,7 +14,9 @@ import {
 import { idbPromise } from "../utils/helpers";
 
 function Detail() {
-  const [state, dispatch] = useStoreContext();
+
+  const state = useSelector((state) => state.reducer);
+  const dispatch = useDispatch((dispatch) => dispatch);
 
   const { id } = useParams();
 
@@ -83,7 +84,7 @@ function Detail() {
     });
 
     // upon removal from cart, delete the item from IndexedDB using the `currentProduct._id` to locate what to remove
-    idbPromise('cart', 'delete', {...currentProduct});
+    idbPromise('cart', 'delete', { ...currentProduct });
   };
 
   return (

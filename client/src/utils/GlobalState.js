@@ -1,24 +1,11 @@
-import React, { createContext, useContext } from "react";
-import { useProductReducer } from './reducers';
+import { rootReducer } from './reducers';
+import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-const StoreContext = createContext();
-const { Provider } = StoreContext;
+// redux global state
 
-const StoreProvider = ({ value = [], ...props }) => {
-    const [state, dispatch] = useProductReducer({
-        products: [],
-        cart: [],
-        cartOpen: false,
-        categories: [],
-        currentCategory: ''
-    });
-    // use this to confirm it works
-    console.log(state);
-    return <Provider value={[state, dispatch]} {...props} />;
-};
+const composedEnhancer = composeWithDevTools();
 
-const useStoreContext = () => {
-    return useContext(StoreContext);
-}
+const store = createStore(rootReducer, composedEnhancer)
 
-export { StoreProvider, useStoreContext };
+export default store;
